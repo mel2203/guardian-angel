@@ -3,7 +3,6 @@ import { Route, Routes, BrowserRouter } from "react-router-dom";
 import { AuthProvider } from "./AuthContext";
 import RequireAuth from "./pages/RequireAuth";
 import Login from "./pages/Login";
-import Homepage from "./pages/Homepage";
 import Dashboard from "./pages/Dashboard";
 
 export default function App() {
@@ -13,7 +12,7 @@ export default function App() {
       {/*no value here, the AuthContext "children" is basically whatever that sits betweem the tags */}
       <BrowserRouter>
         <Routes>
-          <Route path="/" element={<Homepage />} />
+          <Route path="/" element={<Login />} />
           <Route path="/login" element={<Login />} />
           {/* User will only be to dashboard if require Auth is true thats why we wrap dashboard */}
           <Route

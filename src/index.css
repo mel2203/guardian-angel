@@ -1,0 +1,93 @@
+:root {
+  --ga-bg: #120B24;          /* page background only */
+  --ga-text-on-dark: #F1EEF9;
+  --ga-plum: #3B2465;
+  --ga-periwinkle: #6C7AE0;  /* original saturated tone, works fine on white cards */
+  --ga-rose: #C1476B;
+}
+
+body {
+  background: var(--ga-bg);
+  font-family: 'Manrope', sans-serif;
+}
+
+/* Only page chrome (nav, headings sitting directly on body) gets light text */
+h1, h2, h3 {
+  font-family: 'Fraunces', serif;
+  font-weight: 600;
+  color: var(--ga-text-on-dark);
+}
+
+.ga-navbar {
+  background: var(--ga-bg);
+  color: var(--ga-text-on-dark);
+  padding: 1rem 2rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.ga-navbar .ga-logo {
+  font-family: 'Fraunces', serif;
+  font-weight: 600;
+  font-size: 1.2rem;
+  color: var(--ga-text-on-dark);
+}
+
+/* Cards stay light — this is the "surface floating on dark" look */
+.device-card {
+  background: white !important;
+  color: #1C1233;
+  border: none !important;
+  border-radius: 6px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.35);
+}
+
+.stat-card {
+  background: white;
+  border-radius: 8px;
+  padding: 1.2rem 1.5rem;
+}
+.stat-online .stat-number { color: var(--ga-periwinkle); }
+.stat-offline .stat-number { color: var(--ga-rose); }
+.stat-label { color: #1C1233; opacity: 0.7; }
+
+.status-pill.online { background: rgba(108, 122, 224, 0.12); color: var(--ga-periwinkle); }
+.status-pill.offline { background: rgba(193, 71, 107, 0.1); color: var(--ga-rose); }
+
+/* Login panel stays light too, floating on the dark body */
+.login-wrapper {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--ga-bg);
+}
+.login-page {
+  width: 100%;
+  max-width: 360px;
+  background: white;
+  padding: 2.5rem 2rem;
+  border-radius: 8px;
+  border-top: 4px solid var(--ga-plum);
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.4);
+}
+.login-icon { font-size: 2rem; margin-bottom: 0.5rem; }
+.login-title { font-size: 1.5rem; margin-bottom: 0.25rem; color: var(--ga-plum); }
+.login-subtitle { font-size: 0.85rem; color: #6b6478; }
+
+.filter-row { display: flex; gap: 0.6rem; }
+.filter-chip {
+  padding: 0.4rem 1rem;
+  border-radius: 999px;
+  border: 1px solid var(--ga-plum);
+  background: transparent;
+  color: var(--ga-text-on-dark);
+  font-size: 0.85rem;
+  cursor: pointer;
+  text-transform: capitalize;
+}
+.filter-chip.active {
+  background: var(--ga-periwinkle);
+  border-color: var(--ga-periwinkle);
+  color: white;
+}
