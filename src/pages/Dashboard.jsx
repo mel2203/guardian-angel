@@ -29,7 +29,7 @@ export default function Dashboard() {
     <>
       <nav className="ga-navbar">
         <span className="ga-logo">🛡 Guardian Angel</span>
-        <button className="btn btn-outline-light btn-sm" onClick={logout}>
+        <button className="btn btn-outline-secondary btn-sm" onClick={logout}>
           Log Out
         </button>
       </nav>

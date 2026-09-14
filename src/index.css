@@ -1,60 +1,83 @@
 :root {
-  --ga-bg: #120B24;          /* page background only */
-  --ga-text-on-dark: #F1EEF9;
-  --ga-plum: #3B2465;
-  --ga-periwinkle: #6C7AE0;  /* original saturated tone, works fine on white cards */
+  --ga-bg: #F5F6FB;          /* soft, calm page background */
+  --ga-surface: #FFFFFF;
+  --ga-ink: #201A33;         /* deep plum-black, primary text */
+  --ga-ink-soft: #6b6478;    /* secondary text */
+  --ga-line: #E5E2EF;        /* hairline, lavender-tinted */
+  --ga-plum: #3B2465;        /* brand accent, used sparingly */
+  --ga-periwinkle: #6C7AE0;
   --ga-rose: #C1476B;
 }
 
 body {
   background: var(--ga-bg);
+  color: var(--ga-ink);
   font-family: 'Manrope', sans-serif;
 }
 
-/* Only page chrome (nav, headings sitting directly on body) gets light text */
 h1, h2, h3 {
   font-family: 'Fraunces', serif;
   font-weight: 600;
-  color: var(--ga-text-on-dark);
+  color: var(--ga-ink);
 }
 
+/* Navbar sits as a light surface, not dark chrome anymore */
 .ga-navbar {
-  background: var(--ga-bg);
-  color: var(--ga-text-on-dark);
+  background: var(--ga-surface);
+  color: var(--ga-ink);
   padding: 1rem 2rem;
   display: flex;
   justify-content: space-between;
   align-items: center;
+  border-bottom: 1px solid var(--ga-line);
 }
 .ga-navbar .ga-logo {
   font-family: 'Fraunces', serif;
   font-weight: 600;
   font-size: 1.2rem;
-  color: var(--ga-text-on-dark);
+  color: var(--ga-plum);
 }
+/* The JSX uses btn-outline-light, which was built for a dark navbar and will
+   now render invisible on this light one. Swap that className to
+   btn-outline-secondary (or add a custom .ga-logout-btn) so it stays visible. */
 
-/* Cards stay light — this is the "surface floating on dark" look */
+/* Cards are still white, but now need their own edge since the page
+   behind them is light too, not dark */
 .device-card {
-  background: white !important;
-  color: #1C1233;
-  border: none !important;
+  background: var(--ga-surface) !important;
+  color: var(--ga-ink);
+  border: 1px solid var(--ga-line) !important;
   border-radius: 6px;
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.35);
+  overflow: hidden; /* clips the image to the card's rounded top corners */
+  box-shadow: 0 4px 16px rgba(59, 36, 101, 0.06);
 }
 
 .stat-card {
-  background: white;
+  background: var(--ga-surface);
+  border: 1px solid var(--ga-line);
   border-radius: 8px;
   padding: 1.2rem 1.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+.stat-number {
+  font-family: 'Fraunces', serif;
+  font-size: 2.1rem;
+  font-weight: 600;
+  line-height: 1.1;
 }
 .stat-online .stat-number { color: var(--ga-periwinkle); }
 .stat-offline .stat-number { color: var(--ga-rose); }
-.stat-label { color: #1C1233; opacity: 0.7; }
+.stat-label {
+  color: var(--ga-ink-soft);
+  font-size: 0.85rem;
+}
 
 .status-pill.online { background: rgba(108, 122, 224, 0.12); color: var(--ga-periwinkle); }
 .status-pill.offline { background: rgba(193, 71, 107, 0.1); color: var(--ga-rose); }
 
-/* Login panel stays light too, floating on the dark body */
+/* Login panel: light page, white card, plum accent border keeps the brand mark */
 .login-wrapper {
   min-height: 100vh;
   display: flex;
@@ -65,15 +88,16 @@ h1, h2, h3 {
 .login-page {
   width: 100%;
   max-width: 360px;
-  background: white;
+  background: var(--ga-surface);
   padding: 2.5rem 2rem;
   border-radius: 8px;
+  border: 1px solid var(--ga-line);
   border-top: 4px solid var(--ga-plum);
-  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.4);
+  box-shadow: 0 8px 24px rgba(59, 36, 101, 0.08);
 }
 .login-icon { font-size: 2rem; margin-bottom: 0.5rem; }
 .login-title { font-size: 1.5rem; margin-bottom: 0.25rem; color: var(--ga-plum); }
-.login-subtitle { font-size: 0.85rem; color: #6b6478; }
+.login-subtitle { font-size: 0.85rem; color: var(--ga-ink-soft); }
 
 .filter-row { display: flex; gap: 0.6rem; }
 .filter-chip {
@@ -81,7 +105,7 @@ h1, h2, h3 {
   border-radius: 999px;
   border: 1px solid var(--ga-plum);
   background: transparent;
-  color: var(--ga-text-on-dark);
+  color: var(--ga-plum);
   font-size: 0.85rem;
   cursor: pointer;
   text-transform: capitalize;
