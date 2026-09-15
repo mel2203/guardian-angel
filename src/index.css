@@ -1,15 +1,15 @@
 
 
 :root {
-  --ga-bg: #340a4a;          /* Near-black page background */
+  --ga-bg: #340a4a;          /* dark background */
   --ga-ink: #F2F4F8;         /* Primary text, bright off-white */
   --ga-ink-soft: #8C99B0;    /* Muted secondary text */
-  --ga-line: rgba(255, 255, 255, 0.08); /* Precise subtle border */
+  --ga-line: rgba(255, 255, 255, 0.08);
 
-  --ga-glass: #340c70; /* Subtle dark panel fill */
+  --ga-glass: #340c70; 
   --ga-glass-strong: #340c70;
 
-  --ga-accent: #254296;       /* Primary functional blue */
+  --ga-accent: #254296;      
   --ga-accent-strong: #4B72E0;/* Interactive state highlight */
   --ga-on-accent: #FFFFFF;
 
@@ -20,10 +20,14 @@
   --bs-body-color: var(--ga-ink);
 }
 
-html, body, #root {
-  background: var(--ga-bg) !important;
+
+body, html, #root {
   min-height: 100vh;
+  margin: 0;
   font-family: 'Poppins', sans-serif;
+  background: radial-gradient(circle at 15% 15%, #1e1b4b 0%, #0f172a 45%, #020617 100%);
+  background-attachment: fixed;
+  color: #ffffff;
 }
 
 body {
@@ -291,7 +295,30 @@ h1, h2, h3, .ga-logo, .login-title, .stat-number {
   letter-spacing: -0.02em;
 }
 .ga-logo-image-login {
-  height: 30px; /* Adjust this height to match your text size and brand preference */
+  height: 70px; /* Adjust this height to match your text size and brand preference */
   width: auto;
+  
 
+}
+
+.btn-pink {
+  background: linear-gradient(135deg, #e052a0 0%, #f15bb5 100%);
+  color: #ffffff;
+  border: none;
+  font-weight: 600;
+  padding: 0.75rem 1.5rem;
+  border-radius: 8px;
+  transition: all 0.25s ease-in-out;
+  box-shadow: 0 4px 15px rgba(224, 82, 160, 0.3);
+}
+
+.btn-pink:hover {
+  background: linear-gradient(135deg, #f15bb5 0%, #e052a0 100%);
+  color: #ffffff;
+  transform: translateY(-1px);
+  box-shadow: 0 6px 20px rgba(224, 82, 160, 0.5);
+}
+
+.btn-pink:active {
+  transform: translateY(0);
 }

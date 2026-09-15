@@ -4,30 +4,36 @@ import { useContext } from "react";
 import { useNavigate } from "react-router-dom";
 import { AuthContext } from "../AuthContext";
 import { useState } from "react";
-//import { Video, DoorClosed, Radar, ShieldQuestion } from "lucide-react";
 
 export default function Dashboard() {
-  const navigate = useNavigate();
-  const authContext = useContext(AuthContext);
-  const [activeFilter, setActiveFilter] = useState("all");
+  const navigate = useNavigate(); //allows navigation between pages
+  const authContext = useContext(AuthContext); //whiteboard
+  const [activeFilter, setActiveFilter] = useState("all"); //usestate for filtering
 
   function logout() {
+    //global state is false
     authContext.setIsLoggedIn(false);
     navigate("/login");
   }
 
-  const onlineCount = devices.filter((d) => d.status === "online").length;
-  const offlineCount = devices.filter((d) => d.status === "offline").length;
+  const onlineCount = devices.filter(
+    (device) => device.status === "online",
+  ).length;
+  const offlineCount = devices.filter(
+    (device) => device.status === "offline",
+  ).length;
 
+  //similar to mission 5, if state is all, render all devices, else render only filtered devices
   const filteredDevices =
     activeFilter === "all"
       ? devices
-      : devices.filter((d) => d.type === activeFilter);
+      : devices.filter((device) => device.type === activeFilter);
 
   const filters = ["all", "camera", "door", "motion"];
 
   return (
     <>
+      {/*for the top part of the dashboard (ie logos and logout button) */}
       <nav className="ga-navbar">
         <div className="ga-logo">
           <img
@@ -35,13 +41,14 @@ export default function Dashboard() {
             alt="Guardian Angel Logo"
             className="ga-logo-image"
           />
-
           <span className="ga-logo">Guardian Angel</span>
         </div>
         <button className="btn btn-outline-light btn-sm" onClick={logout}>
           Log Out
         </button>
       </nav>
+
+      {/**wWelcome container to greet user */}
       <Container className="py-4">
         <Row className="mb-4">
           <Col md={12}>
@@ -54,6 +61,8 @@ export default function Dashboard() {
           </Col>
         </Row>
       </Container>
+
+      {/*For the online offline count cards */}
 
       <Container className="py-4">
         <Row className="mb-4">
@@ -69,6 +78,8 @@ export default function Dashboard() {
               <span className="stat-label">Offline</span>
             </div>
           </Col>
+
+          {/*Filtering the types of devices */}
         </Row>
         <div className="filter-row mb-4">
           {filters.map((f) => (
@@ -81,6 +92,11 @@ export default function Dashboard() {
             </button>
           ))}
         </div>
+        {/*Same as mission 6, filters map over all the types, and then example of user presses camera, uonly render cameras*/}
+
+        {/*loops over filtred decices and displays them as cards in column grid
+         */}
+
         <Row>
           {filteredDevices.map((device) => (
             <Col md={4} className="mb-3" key={device.id}>

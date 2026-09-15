@@ -1,5 +1,5 @@
 import { AuthContext } from "../AuthContext";
-import { Button, Form } from "react-bootstrap";
+import { Form } from "react-bootstrap";
 import { useNavigate } from "react-router-dom";
 import { useContext, useState } from "react";
 
@@ -53,11 +53,19 @@ export default function Login() {
               onChange={(e) => setPassword(e.target.value)}
             />
           </Form.Group>
-          <Button variant="primary" onClick={login} className="w-100">
+          <button
+            type="button"
+            className="btn btn-pink w-100 mt-3"
+            onClick={login}
+          >
             Login
-          </Button>
+          </button>
         </Form>
       </div>
     </div>
   );
 }
+
+// <button type="submit" className="btn btn-pink w-100 mt-3">
+//         Login
+//       </button>

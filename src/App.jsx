@@ -11,14 +11,18 @@ export default function App() {
       {" "}
       {/*no value here, the AuthContext "children" is basically whatever that sits betweem the tags */}
       <BrowserRouter>
+        {" "}
+        {/*  For url navigation*/}
         <Routes>
           <Route path="/" element={<Login />} />
           <Route path="/login" element={<Login />} />
-          {/* User will only be to dashboard if require Auth is true thats why we wrap dashboard */}
+          {/* User will only go to dashboard if require Auth is true thats why we wrap dashboard */}
           <Route
             path="/dashboard"
             element={
               <RequireAuth>
+                {" "}
+                {/* Means this is a protected route */}
                 <Dashboard />
               </RequireAuth>
             }
