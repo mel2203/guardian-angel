@@ -23,3 +23,7 @@
 Check out the live demo [here](https://guardian-angel-self.vercel.app/)
 
 ![Preview](./public/ga-screenshot.png)
+
+Login Info :
+username : lyana@mail.com
+password : iamsigma
