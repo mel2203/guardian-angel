@@ -20,4 +20,6 @@
 
 ## Live Demo
 
+Check out the live demo [here](https://guardian-angel-self.vercel.app/)
+
 ![Preview](./public/ga-screenshot.png)
