@@ -1,117 +1,297 @@
+
+
 :root {
-  --ga-bg: #F5F6FB;          /* soft, calm page background */
-  --ga-surface: #FFFFFF;
-  --ga-ink: #201A33;         /* deep plum-black, primary text */
-  --ga-ink-soft: #6b6478;    /* secondary text */
-  --ga-line: #E5E2EF;        /* hairline, lavender-tinted */
-  --ga-plum: #3B2465;        /* brand accent, used sparingly */
-  --ga-periwinkle: #6C7AE0;
-  --ga-rose: #C1476B;
+  --ga-bg: #340a4a;          /* Near-black page background */
+  --ga-ink: #F2F4F8;         /* Primary text, bright off-white */
+  --ga-ink-soft: #8C99B0;    /* Muted secondary text */
+  --ga-line: rgba(255, 255, 255, 0.08); /* Precise subtle border */
+
+  --ga-glass: #340c70; /* Subtle dark panel fill */
+  --ga-glass-strong: #340c70;
+
+  --ga-accent: #254296;       /* Primary functional blue */
+  --ga-accent-strong: #4B72E0;/* Interactive state highlight */
+  --ga-on-accent: #FFFFFF;
+
+  --ga-online: #32B67A;
+  --ga-offline: #E05252;
+
+  --bs-body-bg: var(--ga-bg);
+  --bs-body-color: var(--ga-ink);
+}
+
+html, body, #root {
+  background: var(--ga-bg) !important;
+  min-height: 100vh;
+  font-family: 'Poppins', sans-serif;
 }
 
 body {
-  background: var(--ga-bg);
   color: var(--ga-ink);
-  font-family: 'Manrope', sans-serif;
+  letter-spacing: -0.01em;
 }
 
-h1, h2, h3 {
-  font-family: 'Fraunces', serif;
-  font-weight: 600;
+/* Headings — Uniform, clean, precision typography */
+h1, h2, h3, .ga-logo, .login-title, .stat-number {
+  font-family: 'Poppins', sans-serif !important;
+  font-weight: 700;
+  letter-spacing: -0.02em;
   color: var(--ga-ink);
 }
 
-/* Navbar sits as a light surface, not dark chrome anymore */
+/* Navbar */
 .ga-navbar {
-  background: var(--ga-surface);
+  background: rgba(11, 14, 20, 0.8);
+  backdrop-filter: blur(12px);
   color: var(--ga-ink);
   padding: 1rem 2rem;
   display: flex;
   justify-content: space-between;
   align-items: center;
   border-bottom: 1px solid var(--ga-line);
+  position: sticky;
+  top: 0;
+  z-index: 100;
 }
+
 .ga-navbar .ga-logo {
-  font-family: 'Fraunces', serif;
-  font-weight: 600;
-  font-size: 1.2rem;
-  color: var(--ga-plum);
-}
-/* The JSX uses btn-outline-light, which was built for a dark navbar and will
-   now render invisible on this light one. Swap that className to
-   btn-outline-secondary (or add a custom .ga-logout-btn) so it stays visible. */
-
-/* Cards are still white, but now need their own edge since the page
-   behind them is light too, not dark */
-.device-card {
-  background: var(--ga-surface) !important;
+  font-size: 1.1rem;
+  display: flex;
+  align-items: center;
+  gap: 8px;
   color: var(--ga-ink);
-  border: 1px solid var(--ga-line) !important;
-  border-radius: 6px;
-  overflow: hidden; /* clips the image to the card's rounded top corners */
-  box-shadow: 0 4px 16px rgba(59, 36, 101, 0.06);
 }
 
+/* Device Cards */
+.device-card {
+  background: var(--ga-glass) !important;
+  backdrop-filter: blur(10px);
+  border: 1px solid var(--ga-line) !important;
+  border-radius: 12px;
+  overflow: hidden;
+  transition: border-color 0.2s ease, transform 0.2s ease;
+}
+
+.device-card:hover {
+  border-color: rgba(255, 255, 255, 0.2) !important;
+  transform: translateY(-2px);
+}
+
+.device-card .card-title {
+  font-size: 1rem;
+  font-weight: 600;
+  color: var(--ga-ink);
+}
+
+.device-icon-tile {
+  height: 130px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--ga-glass-strong);
+  color: var(--ga-accent-strong);
+  border-bottom: 1px solid var(--ga-line);
+}
+
+/* Stat Cards */
 .stat-card {
-  background: var(--ga-surface);
+  background: var(--ga-glass);
+  backdrop-filter: blur(10px);
   border: 1px solid var(--ga-line);
-  border-radius: 8px;
-  padding: 1.2rem 1.5rem;
+  border-radius: 12px;
+  padding: 1.25rem 1.5rem;
   display: flex;
   flex-direction: column;
-  gap: 2px;
+  gap: 4px;
 }
+
 .stat-number {
-  font-family: 'Fraunces', serif;
-  font-size: 2.1rem;
-  font-weight: 600;
-  line-height: 1.1;
+  font-size: 2.2rem;
+  line-height: 1;
 }
-.stat-online .stat-number { color: var(--ga-periwinkle); }
-.stat-offline .stat-number { color: var(--ga-rose); }
-.stat-label {
+
+.stat-online .stat-number { color: var(--ga-online); }
+.stat-offline .stat-number { color: var(--ga-offline); }
+.stat-label { 
+  color: var(--ga-ink-soft); 
+  font-size: 0.8rem; 
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+/* Status Indicators */
+.status-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 0.25rem 0.65rem;
+  border-radius: 999px;
+  font-size: 0.75rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.03em;
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid var(--ga-line);
+}
+
+.status-pill::before {
+  content: "";
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+
+.status-pill.online {
+  color: var(--ga-online);
+  border-color: rgba(50, 182, 122, 0.25);
+  background: rgba(50, 182, 122, 0.08);
+}
+.status-pill.online::before { background: var(--ga-online); }
+
+.status-pill.offline {
+  color: var(--ga-offline);
+  border-color: rgba(224, 82, 82, 0.25);
+  background: rgba(224, 82, 82, 0.08);
+}
+.status-pill.offline::before { background: var(--ga-offline); }
+
+/* Filter Chips */
+.filter-row { display: flex; gap: 0.5rem; }
+.filter-chip {
+  padding: 0.35rem 0.9rem;
+  border-radius: 6px;
+  border: 1px solid var(--ga-line);
+  background: var(--ga-glass);
   color: var(--ga-ink-soft);
   font-size: 0.85rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.15s ease;
+  text-transform: capitalize;
 }
 
-.status-pill.online { background: rgba(108, 122, 224, 0.12); color: var(--ga-periwinkle); }
-.status-pill.offline { background: rgba(193, 71, 107, 0.1); color: var(--ga-rose); }
+.filter-chip:hover {
+  color: var(--ga-ink);
+  border-color: rgba(255, 255, 255, 0.2);
+}
 
-/* Login panel: light page, white card, plum accent border keeps the brand mark */
+.filter-chip.active {
+  background: var(--ga-accent);
+  border-color: var(--ga-accent);
+  color: var(--ga-on-accent);
+  font-weight: 600;
+}
+
+/* Authentication Layout */
 .login-wrapper {
   min-height: 100vh;
   display: flex;
   align-items: center;
   justify-content: center;
-  background: var(--ga-bg);
+  background: radial-gradient(circle at top center, rgba(37, 66, 150, 0.15), transparent 60%), var(--ga-bg);
 }
+
 .login-page {
   width: 100%;
-  max-width: 360px;
-  background: var(--ga-surface);
-  padding: 2.5rem 2rem;
-  border-radius: 8px;
+  max-width: 380px;
+  background: var(--ga-glass);
+  backdrop-filter: blur(16px);
+  padding: 2.25rem 2rem;
+  border-radius: 12px;
   border: 1px solid var(--ga-line);
-  border-top: 4px solid var(--ga-plum);
-  box-shadow: 0 8px 24px rgba(59, 36, 101, 0.08);
+  box-shadow: 0 12px 32px rgba(0, 0, 0, 0.5);
 }
-.login-icon { font-size: 2rem; margin-bottom: 0.5rem; }
-.login-title { font-size: 1.5rem; margin-bottom: 0.25rem; color: var(--ga-plum); }
+
+.login-icon { font-size: 1.8rem; margin-bottom: 0.5rem; }
+.login-title { font-size: 1.35rem; margin-bottom: 0.25rem; color: var(--ga-ink); }
 .login-subtitle { font-size: 0.85rem; color: var(--ga-ink-soft); }
 
-.filter-row { display: flex; gap: 0.6rem; }
-.filter-chip {
-  padding: 0.4rem 1rem;
-  border-radius: 999px;
-  border: 1px solid var(--ga-plum);
-  background: transparent;
-  color: var(--ga-plum);
+/* Dark Mode Form Inputs */
+.form-label {
+  color: var(--ga-ink-soft);
   font-size: 0.85rem;
-  cursor: pointer;
-  text-transform: capitalize;
+  font-weight: 500;
 }
-.filter-chip.active {
-  background: var(--ga-periwinkle);
-  border-color: var(--ga-periwinkle);
-  color: white;
+
+.form-control {
+  background-color: rgba(0, 0, 0, 0.3) !important;
+  border: 1px solid var(--ga-line) !important;
+  color: var(--ga-ink) !important;
+  border-radius: 6px;
+  padding: 0.6rem 0.8rem;
+  font-size: 0.9rem;
+}
+
+.form-control::placeholder {
+  color: rgba(140, 153, 176, 0.5) !important;
+}
+
+.form-control:focus {
+  border-color: var(--ga-accent-strong) !important;
+  box-shadow: 0 0 0 3px rgba(75, 114, 224, 0.15) !important;
+}
+
+/* Bootstrap Button Overrides */
+.btn-primary {
+  background-color: var(--ga-accent);
+  border-color: var(--ga-accent);
+  color: var(--ga-on-accent);
+  font-weight: 600;
+  border-radius: 6px;
+  padding: 0.55rem 1rem;
+}
+
+.btn-primary:hover, .btn-primary:focus {
+  background-color: var(--ga-accent-strong) !important;
+  border-color: var(--ga-accent-strong) !important;
+}
+
+/* Welcome Banner */
+.welcome-banner {
+  background: var(--ga-glass);
+  backdrop-filter: blur(10px);
+  border: 1px solid var(--ga-line);
+  border-radius: 12px;
+  padding: 1.5rem 1.75rem;
+}
+
+.welcome-title {
+  font-size: 1.5rem;
+  font-weight: 700;
+  margin-bottom: 0.25rem;
+  color: var(--ga-ink);
+}
+
+.welcome-subtitle {
+  color: var(--ga-ink-soft);
+  margin-bottom: 0;
+  font-size: 0.95rem;
+}
+
+/* Logo with Image */
+.ga-logo-brand {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.ga-logo-image {
+  height: 30px; /* Adjust this height to match your text size and brand preference */
+  width: auto;
+  display: block;
+}
+
+.ga-logo {
+  font-family: 'Manrope', sans-serif !important;
+  font-weight: 700;
+  font-size: 1.15rem;
+  color: var(--ga-ink);
+  letter-spacing: -0.02em;
+}
+.ga-logo-image-login {
+  height: 30px; /* Adjust this height to match your text size and brand preference */
+  width: auto;
+
 }

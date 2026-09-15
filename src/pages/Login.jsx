@@ -24,11 +24,15 @@ export default function Login() {
     <div className="login-wrapper">
       <div className="login-page">
         <div className="text-center mb-4">
-          <div className="login-icon">🛡</div>
+          <div className="login-icon">
+            <img
+              src="guardian-angel-logo.png"
+              alt="Guardian Angel Logo"
+              className="ga-logo-image-login"
+            />
+          </div>
           <h1 className="login-title">Guardian Angel</h1>
-          <p className="login-subtitle">
-            Boutique Security Suite — staff sign-in
-          </p>
+          <p className="login-subtitle">STAFF SIGN IN</p>
         </div>
         <Form>
           <Form.Group className="mb-3">
