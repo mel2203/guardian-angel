@@ -20,4 +20,4 @@
 
 ## Live Demo
 
-![Preview](ga-screenshot.png)
+![Preview](./public/ga-screenshot.png)
